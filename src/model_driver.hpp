@@ -29,12 +29,14 @@ private:
     double maxTime;
     double dt;
     double stopThreshold;
+    unsigned int outputFrequency;
+    unsigned int updateCount;
 
     std::vector<std::vector<double>> output;
 public:
     ModelDriver(ModelDefinition* _modelDefinition, std::vector<double> _params, std::vector<double> _initVals)
         : modelDefinition(_modelDefinition), params(_params), curVals(_initVals),
-          runName("default_run"), startTime(0.0), maxTime(100.0), dt(0.0005), stopThreshold(0.000001)
+          runName("default_run"), startTime(0.0), maxTime(100.0), dt(0.0005), stopThreshold(0.000001), outputFrequency(1)
     {  }
     void run(std::string _runName = "default_runName"); //Solves the system of ODEs.
     void update(const double _t, const std::vector<double>& _currentValues); //Updates the model, i.e. commits proposed change.
@@ -47,10 +49,12 @@ public:
     void set_max_time(const double _maxTime) { maxTime = _maxTime; }
     void set_dt(const double _dt) { dt = _dt; }
     void set_stop_threshold(const double _stopThreshold) { stopThreshold = _stopThreshold; }
+    void set_output_frequency(const unsigned int _outputFrequ) { outputFrequency = _outputFrequ; }
     double get_start_time() const { return startTime; }
     double get_max_time() const { return maxTime; }
     double get_dt() const { return dt; }
     double get_num_compartments() const { return curVals.size(); }
+    const unsigned int get_output_frequency() const { return outputFrequency; }
     const ModelDefinition* get_model_definition() const { return modelDefinition; }
     std::vector<double> get_params() const { return params; }
     std::vector<double> get_current_values() const { return curVals; }

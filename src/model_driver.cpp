@@ -8,6 +8,7 @@ void ModelDriver::run(std::string _runName)
 {
     runName = _runName;
     stopCondition = StopCondition(stopThreshold, maxTime);
+    updateCount = outputFrequency;
     RungeKuttaCKSolver solver(this);
     solver.solve();
 }
@@ -18,10 +19,14 @@ void ModelDriver::update(const double _t, const std::vector<double>& _currentVal
     curVals = _currentValues; //Update current value.
 
     //Log to output file.
-    std::vector<double> newRow;
-    newRow.push_back(_t);
-    newRow.insert(newRow.end(), _currentValues.begin(), _currentValues.end());
-    output.push_back(newRow);
+    if (updateCount == outputFrequency)
+    {
+        std::vector<double> newRow;
+        newRow.push_back(_t);
+        newRow.insert(newRow.end(), _currentValues.begin(), _currentValues.end());
+        output.push_back(newRow);
+    }
+    updateCount = (updateCount+1)%(outputFrequency+1);
 }
 
 //Returns a copy of the output.
@@ -42,6 +47,9 @@ bool StopCondition::check(const double _time, const std::vector<double>& _state)
 {
     if (_time >= maxTime)
         return true;
+
+    if (threshold == 0) //Keep going until maxTime elapses.
+        return false;
 
     if (!first) //If not the first check.
     {
