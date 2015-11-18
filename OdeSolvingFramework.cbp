@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="src/example_model.hpp" />
+		<Unit filename="src/gupta_multistrain_w.hpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/model_definition.hpp" />
 		<Unit filename="src/model_driver.cpp" />
