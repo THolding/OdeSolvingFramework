@@ -27,15 +27,15 @@ int main()
     init.push_back(0.001); //y_bx.
     init.push_back(0.001001); //y_by.
 
-    GuptaMultistrainW modelDef;
+    GuptaMultistrainW modelDef(4,3);
 
-    ModelDriver model(&modelDef, params, init);
+    /*ModelDriver model(&modelDef, params, init);
     model.set_dt(0.05);
     model.set_max_time(10000);
     model.set_output_frequency(10);
     model.run("gupta_multistrain_w");
 
-    model.export_output();
+    model.export_output();*/
 
     return 0;
 }
