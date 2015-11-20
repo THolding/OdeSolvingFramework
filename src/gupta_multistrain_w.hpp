@@ -145,4 +145,9 @@ public:
             _start.pop_back();
         }
     }
+
+    const unsigned int get_num_strains() const
+    {
+        return numStrains;
+    }
 };

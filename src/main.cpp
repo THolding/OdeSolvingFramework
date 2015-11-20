@@ -4,30 +4,25 @@
 
 int main()
 {
+    GuptaMultistrainW modelDef(4,3);
+
     std::vector<double> params;
-    params.push_back(0.5); //beta_ax.
-    params.push_back(0.5); //beta_ax_ay.
-    params.push_back(0.5); //beta_ax_bx.
-    params.push_back(0.5); //beta_ax_by.
+    for (std::size_t i=0; i<modelDef.get_num_strains(); i++)
+        params.push_back(0.5); //beta_i.
     params.push_back(0.55); //gamma (cross-immunity).
     params.push_back(0.2); //sigma (recovery).
     params.push_back(0.0008); //mu (births and deaths).
 
     std::vector<double> init;
-    init.push_back(0.0); //z_ax.
-    init.push_back(0.0); //z_ay.
-    init.push_back(0.0); //z_bx.
-    init.push_back(0.0); //z_by.
-    init.push_back(0.0); //w_ax.
-    init.push_back(0.0); //w_ay.
-    init.push_back(0.0); //w_bx.
-    init.push_back(0.0); //w_by.
-    init.push_back(0.001); //y_ax.
-    init.push_back(0.001); //y_ay.
-    init.push_back(0.001); //y_bx.
-    init.push_back(0.001001); //y_by.
+    for (std::size_t i=0; i<modelDef.get_num_strains(); i++)
+        init.push_back(0.0); //z_i.
 
-    GuptaMultistrainW modelDef(4,3);
+    for (std::size_t i=0; i<modelDef.get_num_strains(); i++)
+        init.push_back(0.0); //w_i.
+
+    for (std::size_t i=0; i<modelDef.get_num_strains()-1; i++)
+        init.push_back(0.001); //y_i.
+    init.push_back(0.001001); //y_(n-1).
 
     /*ModelDriver model(&modelDef, params, init);
     model.set_dt(0.05);
