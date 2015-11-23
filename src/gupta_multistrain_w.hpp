@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 
 class GuptaMultistrainW : public ModelDefinition
 {
@@ -9,10 +10,9 @@ private:
     unsigned int numStrains;
 public:
     GuptaMultistrainW(unsigned int _numLoci, unsigned int _numAlleles) :
-        numLoci(_numLoci), numAlleles(_numAlleles)
+        numLoci(_numLoci), numAlleles(_numAlleles), numStrains(std::pow(_numLoci, _numAlleles))
     {
         calculate_overlap_matrix();
-        numStrains = overlapMatrix.size();
     }
 
     void calc_derivatives(std::vector<double>& currentValues, std::vector<double>& output, const std::vector<double>& params) const
@@ -52,11 +52,10 @@ public:
         */
         for (std::size_t i=0; i<numStrains; i++)
         {
-            const double foi = betas[i]*output[(numStrains*2)+i]; //Force of infection = beta*y_i;
-
             const double z_i = currentValues[i];
             const double w_i = currentValues[(numStrains)+i];
             const double y_i = currentValues[(numStrains*2)+i];
+            const double foi = betas[i]*y_i; //Force of infection = beta*y_i;
 
             //dz_i/dt = hosts immune to strain i.
             output[i] = (1.0 - z_i)*foi - mu*z_i;
@@ -94,8 +93,10 @@ public:
     {
         double output = 0.0;
         for (std::size_t i = 0; i<numStrains; i++)
+        {
             if (overlapMatrix[_strain][i] >= 1) //If there is an overlap of at least 1, add the force of infection.
                 output += _betas[i]*_currentVals[(numStrains*2)+i]; //FOI_i = beta*y_i.
+        }
 
         return output;
     }
