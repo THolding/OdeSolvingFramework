@@ -147,6 +147,16 @@ void RungeKuttaCKSolver::solve()
 		}*/
 
 		step(yCurrent, derivs, &dt, &dtnext/*, yScale*/); //Call stepper to compute next output.
+		for (auto i : yCurrent)
+        {
+            std::cout << i << ", ";
+            if (isnan(i))
+            {
+                std::cout << "NaN detected!\n\n\n";
+                return;
+            }
+        }
+        std::cout << "\n";
 
 		t+=dt; //Increment time.
 		//dt=dtnext; //Load next timestep.
