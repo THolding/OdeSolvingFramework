@@ -17,6 +17,7 @@ public:
         generate_antigens();
         generate_strains();
         calculate_overlap_matrix();
+        print_summary();
     }
 
     void calc_derivatives(std::vector<double>& currentValues, std::vector<double>& output, const std::vector<double>& params) const
@@ -26,10 +27,10 @@ public:
         const double sigma = params.at(params.size()-2);
         const double mu = params.at(params.size()-1);
 
-        std::cout << "CurVal: ";
-        for (auto i:currentValues)
-            std::cout << i << ", ";
-        std::cout << "\n\n";
+        //std::cout << "CurVal:\n";
+        //for (auto i:currentValues)
+        //    std::cout << i << "\n";
+        //std::cout << "\n\n";
 
         for (std::size_t i=0; i<numStrains; i++)
         {
@@ -42,7 +43,14 @@ public:
             output[i] = (1.0 - z_i)*foi - mu*z_i;
 
             //dw_i/dt = hosts immune to strains overlapping with i (including i).
-            output[numStrains+i] = (1.0 - w_i)*phi(i, currentValues, betas) - mu*w_i;
+            output[numStrains+i] = (1.0 - w_i)*phi(i, betas, currentValues) - mu*w_i;
+
+            //if (isnan(output[numStrains+i]))
+            //{
+                //std::cout << "Phi = " << phi(i, betas, currentValues) << "\n";
+                //std::cout << "(1.0 - w_i)*phi(i, currentValues, betas) - mu*w_i\n";
+                //std::cout << (1.0 - w_i) << " * " << phi(i, betas, currentValues) << " - " << mu*w_i << "\n\n";
+            //}
 
             //dy_i/dt = hosts infectious with strain i.
             output[(numStrains*2)+i] = ((1.0 - w_i) + (1.0 - gamma)*(w_i - z_i))*foi - sigma*y_i;
@@ -79,11 +87,32 @@ public:
     double phi(const unsigned int _strain, const std::vector<double>& _betas, const std::vector<double>& _curVals) const
     {
         double output = 0.0;
+        //std::cout << "In Phi; OverlapMatrix for strain " << _strain << ": ";
+        //std::cout << "_betas.size() = " << _betas.size() << "\n";
+        //for (auto i : overlapMatrix[_strain])
+       //     std::cout << i << " ";
+        //std::cout << "\n";
+
+        //std::cout << "\n_curVals:\n";
+        //for (auto i : _curVals)
+        //    std::cout << i << ", ";
+        //    std::cout << "numStrains\n" <<
+       // std::cout << "\n\n";
+
+        //std::cout << "calculating phi...\n";
         for (std::size_t j=0; j<numStrains; j++)
         {
+            //std::cout << "\tstep for strain(j) " << j << ": ";
             if (overlapMatrix[_strain][j] > 0)
+            {
+                //std::cout << _betas[j] << " * " << _curVals[(numStrains*2)+j] << " = " << _betas[j]*_curVals[(numStrains*2)+j] << "\n";
                 output += _betas[j]*_curVals[(numStrains*2)+j]; //+= force of infection.
+                //std::cout << "\t\toutput = " << output;
+            }
+           // std::cout << "\n";
         }
+
+        //std::cout << "total output: " << output << "\n\n";
 
         return output;
     }
@@ -128,5 +157,44 @@ public:
         temp.push_back(numStrains);
         vectorToFile(temp, _name+"_numStrains.csv");
         std::cout << "Exported numStrains = " << get_num_strains() << "\n";
+    }
+
+    void calculate_initial_values(const std::vector<double> _ys, const std::vector<double> _params, std::vector<double>& _inits) const
+    {
+        _inits.clear();
+
+        //Zs
+        _inits.insert(_inits.end(), _ys.begin(), _ys.end()); //Initial host immunity equal to proportions of infectious hosts.
+
+        //Ws
+        for (unsigned int i=0; i<numStrains; i++) //For each strain.
+        {
+            double ws=0.0;
+            for (unsigned int j=0; j<numStrains; j++) //For each other strain to compare to...
+                if (overlapMatrix[i][j] > 0) //If the strain overlaps with another strain, add the number of immune hosts.
+                    ws += _ys[j];
+            _inits.push_back(ws);
+        }
+
+        //Ys
+        _inits.insert(_inits.end(), _ys.begin(), _ys.end()); //Finally add the ys.
+    }
+
+    void print_summary() const
+    {
+        //output to screen.
+        std::cout << "Strains list:\n";
+        for (std::size_t s=0; s<numStrains; s++)
+        {
+            std::cout << "strain " << s << ":\t";
+            for (auto i:strains[s])
+                std::cout << i;
+
+            std::cout << "  ";
+            for (auto i:overlapMatrix[s])
+                std::cout << i << " ";
+
+            std::cout << "\n";
+        }
     }
 };
