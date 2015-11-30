@@ -53,7 +53,7 @@ public:
             //}
 
             //dy_i/dt = hosts infectious with strain i.
-            output[(numStrains*2)+i] = ((1.0 - w_i) + (1.0 - gamma)*(w_i - z_i))*foi - sigma*y_i;
+            output[(numStrains*2)+i] = ((1.0 - w_i) + (1.0 - gamma)*(w_i - z_i))*foi - sigma*y_i - mu*y_i;
         }
     }
 

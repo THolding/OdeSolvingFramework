@@ -16,7 +16,7 @@ int main()
     params.push_back(0.6); //beta_4
     params.push_back(0.6); //beta_5
     params.push_back(0.6); //beta_6
-    params.push_back(0.0); //gamma (cross-reactivity)
+    params.push_back(0.8); //gamma (cross-reactivity)
     params.push_back(0.3); //sigma
     params.push_back(0.001); //mu
 
