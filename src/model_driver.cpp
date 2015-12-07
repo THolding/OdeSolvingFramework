@@ -3,14 +3,20 @@
 #include "runge_kutta_ck_solver.hpp"
 #include "utilities.hpp"
 
+#include <iostream>
+
 //Solves the system of ODEs.
 void ModelDriver::run(std::string _runName)
 {
+    //std::cout << "run started" << std::endl;
+
     runName = _runName;
     stopCondition = StopCondition(stopThreshold, maxTime);
     updateCount = outputFrequency;
     RungeKuttaCKSolver solver(this);
     solver.solve();
+
+    //std::cout << "run finished" << std::endl;
 }
 
 //Updates the model, i.e. commits proposed change.
