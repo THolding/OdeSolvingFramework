@@ -3,5 +3,5 @@
 
 
 //Sweep parameter space - numStrains.
-void num_strains_sweep(const unsigned int minStrains, const unsigned int maxStrains, const unsigned int incrementStrains, const double beta0, const double sigma0, const double mu, const double initialInfected);
-void num_strains_sweep(const std::vector<unsigned int> numStrains, const double beta0, const double sigma0, const double mu, const double initialInfected);
+void beta_decay_sweep(const double minBetaDecay, const double maxBetaDecay, const double incrementDecay, const double beta0, const double sigma0, const double mu, const double numCompartments, const double initialInfected);
+void beta_decay_sweep(const std::vector<double> betaDecays, const double beta0, const double sigma0, const double mu, const double numCompartments, const double initialInfected);
