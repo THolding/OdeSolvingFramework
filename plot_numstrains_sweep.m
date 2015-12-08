@@ -1,8 +1,10 @@
+runName = "si_anon_strains_cross05_numstrains_sweep";
 numStrainsList = csvread("si_anon_strains_numstrains_list.csv");
 
 prevalenceList = [];
 for i=0:(length(numStrainsList)-1)
-	data = csvread(["si_anon_strains_numstrains_sweep_" num2str(i) ".csv"]);
+	disp([runName "_" num2str(i) ".csv"])
+	data = csvread([runName "_" num2str(i) ".csv"]);
 	numStrains = numStrainsList(i+1);
 
 	t_index = 1;
@@ -23,22 +25,25 @@ for i=0:(length(numStrainsList)-1)
 	prevalence = Itot(length(Itot));
 	prevalenceList = [prevalenceList, prevalence];
 	
-	plot(t, Ss, 'g', 'LineWidth', 1);
-	hold on;
-	plot(t, Is, 'r', 'LineWidth', 1);
-	plot(t, R, 'b', 'LineWidth', 1);
-	plot(t, Stot, 'g', 'LineWidth', 2);
-	plot(t, Itot, 'r', 'LineWidth', 2);
-	plot(t, Rtot, 'b', 'LineWidth', 2);
+	%plot(t, Ss, 'g', 'LineWidth', 1);
+	%hold on;
+	%plot(t, Is, 'r', 'LineWidth', 1);
+	%plot(t, R, 'b', 'LineWidth', 1);
+	%plot(t, Stot, 'g', 'LineWidth', 2);
+	%plot(t, Itot, 'r', 'LineWidth', 2);
+	%plot(t, Rtot, 'b', 'LineWidth', 2);
 
-	xlabel('t');
-	ylabel('proportion');
-	title(["n = " num2str(numStrains) " prevalence = " num2str(prevalence)]);
-	hold off;
+	%xlabel('t');
+	%ylabel('proportion');
+	%title(["n = " num2str(numStrains) " prevalence = " num2str(prevalence)]);
+	%hold off;
 end
 
 figure
 plot(numStrainsList, prevalenceList, 'k', 'LineWidth', 2);
 xlabel('number of strains');
 ylabel('prevalence in population');
-csvwrite('si_anon_strains_numstrain_sweep_prevalence.csv', prevalenceList);
+csvwrite([runName '_prevalence.csv'], prevalenceList);
+
+
+print('-dpdf', [runName '.pdf'])
