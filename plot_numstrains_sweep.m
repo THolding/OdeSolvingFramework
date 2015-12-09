@@ -39,11 +39,11 @@ for i=0:(length(numStrainsList)-1)
 	%hold off;
 end
 
-figure
-plot(numStrainsList, prevalenceList, 'k', 'LineWidth', 2);
+
+%plot(numStrainsList, prevalenceList, 'k', 'LineWidth', 2);
 xlabel('number of strains');
 ylabel('prevalence in population');
-csvwrite([runName '_prevalence.csv'], prevalenceList);
+%csvwrite([runName '_prevalence.csv'], prevalenceList);
 
 
 print('-dpdf', [runName '.pdf'])
