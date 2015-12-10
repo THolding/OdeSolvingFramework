@@ -2,10 +2,21 @@
 #include <iomanip>
 #include "model_driver.hpp"
 #include "repertoire_multistrain_w.hpp"
+#include "simulation_sets.hpp"
 
 int main()
 {
-    RepertoireMultistrainW modelDef(2,4);
+    const unsigned int numLoci = 2;
+    const unsigned int numAlleles = 3;
+    const double beta = 0.6;
+    const double gamma = 0.8;
+    const double sigma = 0.3;
+    const double mu = 0.001;
+    const double initInfectiousTotal = 0.001;
+
+    run_diversity_sweep(numLoci, {numAlleles}, beta, gamma, sigma, mu, initInfectiousTotal);
+
+    /*RepertoireMultistrainW modelDef(2,4);
 
     const double beta = 0.9;
 
@@ -19,6 +30,7 @@ int main()
     params.push_back(0.8); //gamma (cross-reactivity)
     params.push_back(0.3); //sigma
     params.push_back(0.001); //mu
+    */
 
     /*for (std::size_t i=0; i<modelDef.get_num_strains(); i++)
         params.push_back(0.9); //beta_i.
@@ -32,7 +44,7 @@ int main()
     params.push_back(0.1); //sigma (recovery).
     params.push_back(0.001); //mu (births and deaths).*/
 
-    std::vector<double> ys = { 0.01, 0.01, 0.01, 0.00999, 0.01, 0.01001 };
+    /*std::vector<double> ys = { 0.01, 0.01, 0.01, 0.00999, 0.01, 0.01001 };
     std::vector<double> init;
     modelDef.calculate_initial_values(ys, params, init);
 
@@ -47,7 +59,7 @@ int main()
     model.run("repertoire_multistrain_w");
     modelDef.export_num_strains("repertoire_multistrain_w");
 
-    model.export_output();
+    model.export_output();*/
 
     return 0;
 }

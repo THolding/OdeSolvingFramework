@@ -1,6 +1,8 @@
 #pragma once
 #include <algorithm>
+#include <iostream>
 #include "utilities.hpp"
+#include "model_definition.hpp"
 
 class RepertoireMultistrainW : public ModelDefinition
 {
@@ -14,6 +16,9 @@ private:
 public:
     RepertoireMultistrainW(unsigned int _repertoireSize, unsigned int _numVariants) : repertoireSize(_repertoireSize), numVariants(_numVariants)
     {
+        if (_repertoireSize > _numVariants)
+            throw std::runtime_error("Cannot initialise model when repertoire size is greater than number of variants. Duplicate variants not allowed.");
+
         generate_antigens();
         generate_strains();
         calculate_overlap_matrix();
@@ -178,6 +183,19 @@ public:
 
         //Ys
         _inits.insert(_inits.end(), _ys.begin(), _ys.end()); //Finally add the ys.
+    }
+
+    void calculate_parameter_set(const double _beta, const double _gamma, const double _sigma, const double _mu, std::vector<double>& _params)
+    {
+        _params.clear();
+
+        for (unsigned int i=0; i<numStrains; i++)
+        {
+            _params.push_back(_beta);
+        }
+        _params.push_back(_gamma);
+        _params.push_back(_sigma);
+        _params.push_back(_mu);
     }
 
     void print_summary() const
