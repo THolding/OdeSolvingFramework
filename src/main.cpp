@@ -6,15 +6,38 @@
 
 int main()
 {
-    const unsigned int numLoci = 2;
-    const unsigned int numAlleles = 3;
+    /*const unsigned int numLoci = 2;
+    const unsigned int numAlleles = 4;
     const double beta = 0.6;
-    const double gamma = 0.8;
+    const double gamma = 0.70;
     const double sigma = 0.3;
     const double mu = 0.001;
     const double initInfectiousTotal = 0.001;
 
-    run_diversity_sweep(numLoci, {numAlleles}, beta, gamma, sigma, mu, initInfectiousTotal);
+    run_diversity_sweep(numLoci, {numAlleles}, beta, gamma, sigma, mu, initInfectiousTotal);*/
+
+    ///Num alleles sweep (diversity_sweep).
+    /*const unsigned int numLoci = 2;
+    const std::vector<unsigned int> numAlleles = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+    const double beta = 0.6;
+    const double gamma = 0.70;
+    const double sigma = 0.3;
+    const double mu = 0.001;
+    const double initInfectiousTotal = 0.001;
+    run_diversity_sweep(numLoci, numAlleles, beta, gamma, sigma, mu, initInfectiousTotal, "diversity_sweep_test");*/
+
+    ///Randomly selected strains, num strains sweep.
+    const unsigned int numLoci = 2;
+    const unsigned int numAlleles = 11; //105 possible strains.
+    const std::vector<unsigned int> numStrainsList = { 2, 4, 8, 12, 16, 20, 25, 30, 40, 55};
+    const unsigned int numReps = 30;
+    const double beta = 0.6;
+    const double gamma = 0.70;
+    const double sigma = 0.3;
+    const double mu = 0.001;
+    const double initInfectiousTotal = 0.001;
+    run_random_initial_strain_sweep(numLoci, numAlleles, numStrainsList, numReps, beta, gamma, sigma, mu, initInfectiousTotal, "random_num_strains_sweep");
+
 
     /*RepertoireMultistrainW modelDef(2,4);
 

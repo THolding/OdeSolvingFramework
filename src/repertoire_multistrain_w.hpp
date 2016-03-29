@@ -22,7 +22,7 @@ public:
         generate_antigens();
         generate_strains();
         calculate_overlap_matrix();
-        print_summary();
+        //print_summary();
     }
 
     void calc_derivatives(std::vector<double>& currentValues, std::vector<double>& output, const std::vector<double>& params) const
