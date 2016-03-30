@@ -40,7 +40,7 @@
 		<Unit filename="src/runge_kutta_ck_solver.hpp" />
 		<Unit filename="src/simulation_sets.cpp" />
 		<Unit filename="src/simulation_sets.hpp" />
-		<Unit filename="src/sis_anon_strains.hpp" />
+		<Unit filename="src/sir_model.hpp" />
 		<Unit filename="src/utilities.cpp" />
 		<Unit filename="src/utilities.hpp" />
 		<Extensions>
