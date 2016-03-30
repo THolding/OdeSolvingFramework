@@ -51,6 +51,8 @@ void ModelDriver::export_output() const
 //Internal logic of stop condition check. Returns true when stop condition is met.
 bool StopCondition::check(const double _time, const std::vector<double>& _state)
 {
+    //std::cout << "maxtime = " << maxTime << ", time = " << _time << "\n.";
+
     if (_time >= maxTime)
         return true;
 
