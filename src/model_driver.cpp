@@ -22,7 +22,7 @@ void ModelDriver::run(std::string _runName)
 //Updates the model, i.e. commits proposed change.
 void ModelDriver::update(const double _t, const std::vector<double>& _currentValues)
 {
-    curVals = _currentValues; //Update current value.
+    curVals = _currentValues;
 
     //Log to output file.
     if (updateCount == outputFrequency)
@@ -44,7 +44,13 @@ std::vector<std::vector<double>> ModelDriver::get_output() const
 //Export output to file.
 void ModelDriver::export_output() const
 {
-    matrixToFile(output, runName+".csv", ", ");
+    export_output(runName);
+}
+
+//Export output to file.
+void ModelDriver::export_output(const std::string _filename) const
+{
+    matrixToFile(output, _filename+".csv", ", ");
 }
 
 

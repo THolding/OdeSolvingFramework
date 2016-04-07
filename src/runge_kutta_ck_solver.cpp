@@ -165,7 +165,8 @@ void RungeKuttaCKSolver::solve()
 		//Check stop condition hasn't been met.
 		if (model->stop_condition_met(t, yCurrent))
 		{
-		    std::cout << "Stop condition met at t= " << t << ". Solver returns.\n";
+		    if (t >= model->get_max_time())
+                std::cout << "Stop condition met at t= " << t << ". WARNING: May not have converged to equilibrium state...\n";
             break;
 		}
 

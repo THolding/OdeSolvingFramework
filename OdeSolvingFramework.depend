@@ -89,39 +89,39 @@
 	"runge_kutta_ck_solver.hpp"
 	"utilities.hpp"
 
-1448964395 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/model_driver.cpp
+1459767256 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/model_driver.cpp
 	"model_driver.hpp"
 	<cmath>
 	"runge_kutta_ck_solver.hpp"
 	"utilities.hpp"
 	<iostream>
 
-1447679463 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/model_driver.hpp
+1459767281 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/model_driver.hpp
 	<string>
 	<vector>
 	"model_definition.hpp"
 
-1446564114 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/model_definition.hpp
+1448883087 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/model_definition.hpp
 	<vector>
 
-1446840570 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/runge_kutta_ck_solver.hpp
+1448883087 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/runge_kutta_ck_solver.hpp
 	<vector>
 	<stdio.h>
 
-1437644818 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/utilities.hpp
+1449669614 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/utilities.hpp
 	<vector>
 	<string>
 	<fstream>
 	<sstream>
 
-1448352362 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/runge_kutta_ck_solver.cpp
+1459503654 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/runge_kutta_ck_solver.cpp
 	"runge_kutta_ck_solver.hpp"
 	<iostream>
 	<cmath>
 	"model_definition.hpp"
 	"model_driver.hpp"
 
-1432030833 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/utilities.cpp
+1449669609 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/utilities.cpp
 	"utilities.hpp"
 	<cstdlib>
 	<fstream>
@@ -130,31 +130,47 @@
 	<stdexcept>
 	<iostream>
 
-1449500402 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/main.cpp
+1460021418 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/main.cpp
 	<iostream>
 	"model_driver.hpp"
-	"sis_anon_strains.hpp"
+	"sir_anon_strains.hpp"
 	"simulation_sets.hpp"
+	"helper_functions.hpp"
 
 1448967184 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/si_anon_strains.hpp
 	<iostream>
 	"utilities.hpp"
 	"model_definition.hpp"
 
-1449498955 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/simulation_sets.hpp
+1459936109 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/simulation_sets.hpp
 	<vector>
+	<string>
 
-1449499482 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/simulation_sets.cpp
+1460020387 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/simulation_sets.cpp
 	"simulation_sets.hpp"
 	<iostream>
 	<boost/lexical_cast.hpp>
 	"model_driver.hpp"
-	"sis_anon_strains.hpp"
+	"sir_anon_strains.hpp"
 	"utilities.hpp"
+	"helper_functions.hpp"
 
-1449499045 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/sis_anon_strains.hpp
+1459342678 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/sis_anon_strains.hpp
 	<iostream>
 	<cmath>
 	"utilities.hpp"
 	"model_definition.hpp"
+
+1459934258 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/sir_anon_strains.hpp
+	<iostream>
+	<cmath>
+	"utilities.hpp"
+	"model_definition.hpp"
+
+1459427937 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/helper_functions.hpp
+	<vector>
+
+1459429232 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/helper_functions.cpp
+	"helper_functions.hpp"
+	<vector>
 

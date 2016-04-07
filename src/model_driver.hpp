@@ -43,6 +43,7 @@ public:
     bool stop_condition_met(const double _time, const std::vector<double>& _state) { return stopCondition.check(_time, _state); }; //Returns true if stop condition has been met.
     std::vector<std::vector<double>> get_output() const; //Returns a copy of the output.
     void export_output() const; //Exports to csv file.
+    void export_output(const std::string _filename) const;
 
     //Model settings / getter-setters.
     void set_start_time(const double _startTime) { startTime = _startTime; }
@@ -51,6 +52,7 @@ public:
     void set_stop_threshold(const double _stopThreshold) { stopThreshold = _stopThreshold; }
     void set_output_frequency(const unsigned int _outputFrequ) { outputFrequency = _outputFrequ; }
     double get_start_time() const { return startTime; }
+    double get_stop_threshold() const { return stopThreshold; }
     double get_max_time() const { return maxTime; }
     double get_dt() const { return dt; }
     double get_num_compartments() const { return curVals.size(); }
@@ -58,5 +60,6 @@ public:
     const ModelDefinition* get_model_definition() const { return modelDefinition; }
     std::vector<double> get_params() const { return params; }
     std::vector<double> get_current_values() const { return curVals; }
+    std::vector<double> get_last_output() const { return output.back(); }
     //
 };
