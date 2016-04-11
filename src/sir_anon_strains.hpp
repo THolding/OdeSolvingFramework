@@ -11,8 +11,6 @@ private:
 public:
     SIRAnonStrains(const unsigned int _numStrains) : numStrains(_numStrains)
     {  }
-
-
     //Parameters: numStrains+1 betas (final beta is typically 0, indicating total immunity).
     //            numStrains sigmas.
     //            mu at params.end()-1.
@@ -22,7 +20,7 @@ public:
     {
         //Define parameter constants for easier readability.
         const std::vector<double> betas(params.begin(), params.begin()+numStrains);
-        const std::vector<double> sigmas(params.begin()+numStrains+1, params.begin()+(2*numStrains)+1);
+        const std::vector<double> sigmas(params.begin()+numStrains, params.begin()+(2*numStrains));
         const double mu = params.back();
         const double N = 1.0;
         double totalInfected = 0;

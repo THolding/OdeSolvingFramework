@@ -6,11 +6,11 @@
 
 int main()
 {
-    /*
+
     ///Example execution of a single simulation.
-    const unsigned int numStrains = 3;
-    const double beta0 = 2.0;
-    const double sigma = 0.5;
+    /*const unsigned int numStrains = 2;
+    const double beta0 = 1.0;
+    const double sigma = 0.25;
     const double mu = 1.0/50.0;
     const double initialInfected = 0.001;
     //const double betaDecayRate = 0.1;
@@ -18,10 +18,10 @@ int main()
     SIRAnonStrains modelDef(numStrains);
 
     //Define initial values and parameters
-    std::vector<double> init = modelDef.generate_init_vals(initialInfected);
-    //std::cout << "initial values: ";
-    //for (double d : init) std::cout << d << "\t";
-    //std::cout << "\n";
+    std::vector<double> init = modelDef.generate_init_vals(initialInfected); // {0.999, 0.001, 0, 0, 0};
+    std::cout << "initial values: ";
+    for (double d : init) std::cout << d << " ";
+    std::cout << "\n";
 
     std::vector<double> betas = linear(beta0, numStrains);
     std::vector<double> sigmas(numStrains);
@@ -32,11 +32,9 @@ int main()
     params.insert(params.end(), sigmas.begin(), sigmas.end());
     params.push_back(mu);
 
-    //std::cout << "\n\nparams:\n";
-    //for (double d : params) std::cout << d << "\t";
-    //std::cout << "\ninit:\n";
-    //for (double d : init) std::cout << d << "\t";
-    //std::cout << std::endl << std::endl;
+    std::cout << "\n\nparams:\n";
+    for (double d : params) std::cout << d << " ";
+    std::cout << "\n";
 
     ModelDriver model(&modelDef, params, init);
     model.set_dt(0.005);
@@ -58,19 +56,19 @@ int main()
     std::cout << "calculated prev: " << prevalence << "\n\n";
     */
 
-    ///Run a series of eir sweeps with different numstrains
-    scratchpad();
 
-    /*std::string name = "numstrains_sweep";
-    std::vector<unsigned int> numStrainsList = {2, 3, 4, 5};//, 4, 5};//, 8, 12, 20, 30, 50, 100};//{3, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 50, 100};//, 4, 5, 7, 9, 12, 15, 20};
-    std::vector<double> beta0s = calc_equal_range(0.2, 0.05, 2.5); //Naive transmission rates to sweep through.
+    ///Run a series of eir sweeps with different numstrains
+    //scratchpad();
+
+    std::string name = "numstrains_sweep";
+    std::vector<unsigned int> numStrainsList = {2, 4, 6, 8, 12, 20, 30, 50, 100};//{3, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 50, 100};//, 4, 5, 7, 9, 12, 15, 20};
+    std::vector<double> beta0s = calc_equal_range(0.2, 0.05, 3.0); //Naive transmission rates to sweep through.
     const double sigma = 0.25;
     const double mu = 1.0/50.0;
     const double initialInfected = 0.0001;
     std::vector<std::vector<double>> output = num_strains_sweep(name, beta0s, sigma, mu, numStrainsList, initialInfected, false);
 
-
-    matrixToFile(output, name+".csv", ", ");*/
+    matrixToFile(output, name+".csv", ", ");
 
     return 0;
 }
