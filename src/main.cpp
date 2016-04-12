@@ -6,9 +6,9 @@
 int main()
 {
     ///Example execution of a single simulation.
-    /*const double beta = 2.0;
+    const double beta = 3.0;
     const double sigma = 1.0;
-    const double mu = 1.0/(70.0);
+    const double mu = 0.01; //1.0/(70.0);
     SIRModel modelDef;
 
     std::vector<double> init = {0.999, 0.001, 0.0}; //S, I and R initial values
@@ -20,11 +20,16 @@ int main()
     model.set_output_frequency(10);
     model.run("sir_example");
 
-    model.export_output();*/
+    model.export_output();
+
+    std::cout << "\n\nBeta = " << beta << "\tSigma = " << sigma << "\tMu = " << mu << "\n";
+    std::cout << "\nEquilibrium susceptible = " << model.get_current_values()[0];
+    std::cout << "\nEquilibrium prevalence = " << model.get_current_values()[1];
+    std::cout << "\nEquilibrium recovered = " << model.get_current_values()[2] << "\n";
 
 
     ///Run the EIR vs prevalence simulation (uses beta as substitute for prevalence).
-    simulate_eir_vs_prevalence();
+    //simulate_eir_vs_prevalence();
 
     ///Run parameter sweep.
     /*const double beta0 = 2.0;
