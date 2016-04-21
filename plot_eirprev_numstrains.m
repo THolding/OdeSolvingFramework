@@ -1,4 +1,4 @@
-name = 'numstrains_sweep';
+name = 'numstrains_sweep_crossimmunity';
 %recovs = csvread([name, '_recovered.csv']);
 %function [] = plot_eirprev_numstrains (name)
 
@@ -29,5 +29,5 @@ name = 'numstrains_sweep';
 
 	%printing
 	set(gcf,'PaperUnits','inches','PaperPosition',[0 0 6 4.5])
-	print -dpdf "prevalence_vs_antigenic_diversity.pdf" -r100
+	print -dpdf "anon_prevalence_crossimmunity_x12_recovery.pdf" -r100
 %end

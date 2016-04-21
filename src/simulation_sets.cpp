@@ -50,9 +50,13 @@ std::vector<double> eir_sweep(std::string name, const std::vector<double> beta0s
 
         //Define initial values and parameters
         std::vector<double> init = modelDef.generate_init_vals(initialInfected);
-        std::vector<double> betas = linear(beta0, numStrains);
-        std::vector<double> sigmas(numStrains);
-        std::fill(sigmas.begin(), sigmas.end(), sigma);
+        std::vector<double> betas = linear(beta0, numStrains); //Variant specific immunity.
+        //std::vector<double> betas = crossimmunity_exponential(beta0, numStrains, 2.5);
+
+        //std::vector<double> sigmas(numStrains); //Recovery is exposure independent.
+        //std::fill(sigmas.begin(), sigmas.end(), sigma); //Recovery is exposure independent.
+
+        std::vector<double> sigmas = calc_recovery_increase(sigma, numStrains, sigma*12, 0.5);
 
         std::vector<double> params; //Place to merge all parameters
         params.insert(params.end(), betas.begin(), betas.end());

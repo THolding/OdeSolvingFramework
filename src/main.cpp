@@ -54,13 +54,18 @@ int main()
     for (unsigned int i=numStrains; i<numStrains*2; i++)
         prevalence += finalValues[i];
     std::cout << "calculated prev: " << prevalence << "\n\n";
+    std::cout << "Final Values: ";
+    for (double d : finalValues) std::cout << d << " ";
+    std::cout << "\n\n";
     */
 
+    std::vector<double> temp = calc_recovery_increase(1, 10, 5, 0.5);
+    for (double d : temp) std::cout << d << "\n";
 
     ///Run a series of eir sweeps with different numstrains
     //scratchpad();
 
-    std::string name = "numstrains_sweep";
+    std::string name = "numstrains_sweep_crossimmunity";
     std::vector<unsigned int> numStrainsList = {2, 4, 6, 8, 12, 20, 30, 50, 100};//{3, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 50, 100};//, 4, 5, 7, 9, 12, 15, 20};
     std::vector<double> beta0s = calc_equal_range(0.2, 0.05, 3.0); //Naive transmission rates to sweep through.
     const double sigma = 0.25;
