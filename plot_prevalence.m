@@ -1,5 +1,3 @@
-close all
-
 data = csvread("eirvsprev_prevalences.csv");
 
 eir = data(:,1);
@@ -19,5 +17,5 @@ axis([0, 750, 0, 1.0])
 
 %printing
 set(gcf,'PaperUnits','inches','PaperPosition',[0 0 4 3])
-print -dpdf "SIRS_prev_fit.pdf" -r100
+print -dpdf "SIS_prev_fit.pdf" -r100
 

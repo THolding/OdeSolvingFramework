@@ -1,6 +1,6 @@
 close all
 
-data = csvread("sirs_example.csv");
+data = csvread("sis_example.csv");
 
 t = data(1,:);
 S = data(2,:);

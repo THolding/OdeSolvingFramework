@@ -3,7 +3,7 @@ numReps = 40;
 graphics_toolkit('gnuplot')
 
 for i=0:(numReps-1)
-	name = ["sir_eirvsprev_" num2str(i)]
+	name = ["sis_eirvsprev_" num2str(i)]
 	data = csvread([name, ".csv"]);
 	
 	t = data(1,:);

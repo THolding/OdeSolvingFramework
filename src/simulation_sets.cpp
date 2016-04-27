@@ -2,7 +2,7 @@
 #include <iostream>
 #include <boost/lexical_cast.hpp>
 #include "model_driver.hpp"
-#include "sirs_model.hpp"
+#include "sis_model.hpp"
 #include "utilities.hpp"
 
 
@@ -13,12 +13,13 @@ void simulate_eir_vs_prevalence()
     //Parameter initialisation
     std::vector<double> init = {0.999, 0.001, 0.0};
 
-    const double sigma = 1.0/60.0; //1.0/120.0;
-    const double mu = 1.0/(70.0*365); //
-    const double alpha = 1.0/14; // 1/(mean immune time)
+    const double sigma = 1.0/30.0; //1.0/120.0;
+    const double mu = 1.0/(90.0*365); //People live to about 70...
 
     std::vector<double> betas;
-    for (double i=0.05; i<=2.5; i+=0.05)
+    for (double i=0.01; i<=0.5; i+=0.01)
+        betas.push_back(i);
+    for (double i=0.6; i<=2.5; i+=0.1)
         betas.push_back(i);
 
     //Run the model for each beta value and extract equilibrium prevalence.
@@ -26,13 +27,13 @@ void simulate_eir_vs_prevalence()
     for (unsigned int index=0; index<betas.size(); index++)
     {
         //Create and run model for current beta
-        SIRSModel modelDef;
-        std::vector<double> params = {betas[index], sigma, mu, alpha};
+        SISModel modelDef;
+        std::vector<double> params = {betas[index], sigma, mu};
         ModelDriver model(&modelDef, params, init);
         model.set_dt(0.005);
         model.set_max_time(20000);
         model.set_output_frequency(10);
-        model.run("sirs_eirvsprev_"+boost::lexical_cast<std::string>(index));
+        model.run("sis_eirvsprev_"+boost::lexical_cast<std::string>(index));
         model.export_output();
 
         //Calculate prevalence
