@@ -1,5 +1,5 @@
-numBetaDecaysList = csvread("sis_anon_strains_betadecays_list.csv");
-numStrains = csvread("sis_anon_strains_numStrains.csv");
+numBetaDecaysList = csvread("sirs_anon_strains_betadecays_list.csv");
+numStrains = csvread("sirs_anon_strains_numStrains.csv");
 
 graphics_toolkit('gnuplot')
 

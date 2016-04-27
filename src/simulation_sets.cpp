@@ -2,7 +2,7 @@
 #include <iostream>
 #include <boost/lexical_cast.hpp>
 #include "model_driver.hpp"
-#include "sir_model.hpp"
+#include "sirs_model.hpp"
 #include "utilities.hpp"
 
 
@@ -13,8 +13,10 @@ void simulate_eir_vs_prevalence()
     //Parameter initialisation
     std::vector<double> init = {0.999, 0.001, 0.0};
 
-    const double sigma = 0.05; //1.0/120.0;
-    const double mu = 0.0025; //1.0/90.0;
+    const double sigma = 1.0/60.0; //1.0/120.0;
+    const double mu = 1.0/(70.0*365); //
+    const double alpha = 1.0/14; // 1/(mean immune time)
+
     std::vector<double> betas;
     for (double i=0.05; i<=2.5; i+=0.05)
         betas.push_back(i);
@@ -24,18 +26,22 @@ void simulate_eir_vs_prevalence()
     for (unsigned int index=0; index<betas.size(); index++)
     {
         //Create and run model for current beta
-        SIRModel modelDef;
-        std::vector<double> params = {betas[index], sigma, mu};
+        SIRSModel modelDef;
+        std::vector<double> params = {betas[index], sigma, mu, alpha};
         ModelDriver model(&modelDef, params, init);
         model.set_dt(0.005);
-        model.set_max_time(10000);
-        model.set_output_frequency(1);
-        model.run("sir_eirvsprev_"+boost::lexical_cast<std::string>(index));
+        model.set_max_time(20000);
+        model.set_output_frequency(10);
+        model.run("sirs_eirvsprev_"+boost::lexical_cast<std::string>(index));
         model.export_output();
 
         //Calculate prevalence
         std::vector<double> finalVals = model.get_current_values();
-        prevalences.push_back(finalVals[2]);
+        std::cout << "final values:";
+        for (double d : finalVals)
+            std::cout << d << " ";
+        std::cout << std::endl;
+        prevalences.push_back(finalVals[1]);
     }
 
     //Output betas vs prevalence
@@ -44,12 +50,6 @@ void simulate_eir_vs_prevalence()
     output.push_back(prevalences);
     matrixToFile(output, "eirvsprev_prevalences.csv", ", ");
 }
-
-
-
-
-
-
 
 
 /*void beta_decay_sweep(const double minBetaDecay, const double maxBetaDecay, const double incrementDecay, const double beta0, const double sigma0, const double mu, const double numCompartments, const double initialInfected)

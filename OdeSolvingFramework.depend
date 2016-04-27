@@ -89,14 +89,14 @@
 	"runge_kutta_ck_solver.hpp"
 	"utilities.hpp"
 
-1460380268 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/model_driver.cpp
+1461246685 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/model_driver.cpp
 	"model_driver.hpp"
 	<cmath>
 	"runge_kutta_ck_solver.hpp"
 	"utilities.hpp"
 	<iostream>
 
-1460380268 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/model_driver.hpp
+1461246685 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/model_driver.hpp
 	<string>
 	<vector>
 	"model_definition.hpp"
@@ -114,7 +114,7 @@
 	<fstream>
 	<sstream>
 
-1460380268 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/runge_kutta_ck_solver.cpp
+1461246685 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/runge_kutta_ck_solver.cpp
 	"runge_kutta_ck_solver.hpp"
 	<iostream>
 	<cmath>
@@ -130,10 +130,10 @@
 	<stdexcept>
 	<iostream>
 
-1459250833 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/main.cpp
+1461751292 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/main.cpp
 	<iostream>
 	"model_driver.hpp"
-	"sir_model.hpp"
+	"sirs_model.hpp"
 	"simulation_sets.hpp"
 
 1448967184 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/si_anon_strains.hpp
@@ -141,15 +141,15 @@
 	"utilities.hpp"
 	"model_definition.hpp"
 
-1460380268 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/simulation_sets.hpp
+1461246685 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/simulation_sets.hpp
 	<vector>
 
-1460380268 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/simulation_sets.cpp
+1461750709 source:/home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/simulation_sets.cpp
 	"simulation_sets.hpp"
 	<iostream>
 	<boost/lexical_cast.hpp>
 	"model_driver.hpp"
-	"sir_model.hpp"
+	"sirs_model.hpp"
 	"utilities.hpp"
 
 1449499045 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/sis_anon_strains.hpp
@@ -159,6 +159,12 @@
 	"model_definition.hpp"
 
 1460380268 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/sir_model.hpp
+	<iostream>
+	<cmath>
+	"utilities.hpp"
+	"model_definition.hpp"
+
+1461750259 /home/rr/1a_Files/GitRepos/OdeSolvingFramework/src/sirs_model.hpp
 	<iostream>
 	<cmath>
 	"utilities.hpp"
