@@ -13,12 +13,14 @@ void simulate_eir_vs_prevalence()
     //Parameter initialisation
     std::vector<double> init = {0.999, 0.001, 0.0};
 
-    const double sigma = 1.0/60.0; //1.0/120.0;
-    const double mu = 1.0/(70.0*365); //
-    const double alpha = 1.0/14; // 1/(mean immune time)
+    const double sigma = 1.0/60.0; //1.0/120.0 //1/(mean infectious period);
+    const double mu = 1.0/(70.0*365); //1/(mean life expectancy)
+    const double alpha = 1.0/7.0; // 1/(mean immune time)
 
     std::vector<double> betas;
-    for (double i=0.05; i<=2.5; i+=0.05)
+    for (double i=0.01; i<=0.5; i+=0.01)
+        betas.push_back(i);
+    for (double i=0.6; i<=2.5; i+=0.10)
         betas.push_back(i);
 
     //Run the model for each beta value and extract equilibrium prevalence.
