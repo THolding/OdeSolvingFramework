@@ -6,7 +6,7 @@
 int main()
 {
     ///Example execution of a single simulation.
-
+    /*
     const double beta = 3.0;
     const double sigma = 1.0;
     const double mu = 0.01; //1.0/(70.0);
@@ -27,11 +27,11 @@ int main()
     std::cout << "\nEquilibrium susceptible = " << model.get_current_values()[0];
     std::cout << "\nEquilibrium prevalence = " << model.get_current_values()[1];
     std::cout << "\nEquilibrium recovered = " << model.get_current_values()[2] << "\n";
-
+    */
 
 
     ///Run the EIR vs prevalence simulation (uses beta as substitute for prevalence).
-    //simulate_eir_vs_prevalence();
+    simulate_eir_vs_prevalence();
 
     ///Run parameter sweep.
     /*const double beta0 = 2.0;
