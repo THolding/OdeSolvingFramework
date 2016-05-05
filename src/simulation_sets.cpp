@@ -13,8 +13,17 @@ void simulate_eir_vs_prevalence()
     //Parameter initialisation
     std::vector<double> init = {0.999, 0.001, 0.0};
 
-    const double sigma = 1.0/30.0; //1.0/120.0;
+    /*const double sigma = 1.0/30.0; //1.0/120.0;
     const double mu = 1.0/(90.0*365); //People live to about 70...
+
+    std::vector<double> betas;
+    for (double i=0.01; i<=0.5; i+=0.01)
+        betas.push_back(i);
+    for (double i=0.6; i<=2.5; i+=0.1)
+        betas.push_back(i);*/
+
+    const double sigma = 1.0/8.0; //1.0/120.0;
+    const double mu = 1.0/(10.0*365); //People live to about 70...
 
     std::vector<double> betas;
     for (double i=0.01; i<=0.5; i+=0.01)
