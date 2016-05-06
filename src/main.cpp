@@ -59,19 +59,47 @@ int main()
     std::cout << "\n\n";
     */
 
-    std::vector<double> temp = calc_recovery_increase(1, 10, 5, 0.5);
-    for (double d : temp) std::cout << d << "\n";
-
     ///Run a series of eir sweeps with different numstrains
-    //scratchpad();
-
-    std::string name = "numstrains_sweep_crossimmunity";
-    std::vector<unsigned int> numStrainsList = {2, 4, 6, 8, 12, 20, 30, 50, 100};//{3, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 50, 100};//, 4, 5, 7, 9, 12, 15, 20};
+    /*std::string name = "eir_sweep_each_numstrains";
+    std::vector<unsigned int> numStrainsList = {2, 4, 6, 8, 12, 20, 30, 50, 100};
     std::vector<double> beta0s = calc_equal_range(0.2, 0.05, 3.0); //Naive transmission rates to sweep through.
     const double sigma = 0.25;
     const double mu = 1.0/50.0;
     const double initialInfected = 0.0001;
-    std::vector<std::vector<double>> output = num_strains_sweep(name, beta0s, sigma, mu, numStrainsList, initialInfected, false);
+    std::vector<std::vector<double>> output = eir_sweep_each_numstrains(name, beta0s, sigma, mu, numStrainsList, initialInfected, false);
+
+    matrixToFile(output, name+".csv", ", ");
+    */
+
+
+    ///Run a single num_strains_sweep
+    /*std::string name = "num_strains_sweep";
+    std::vector<unsigned int> numStrainsList; //num strains to sweep through
+    for (unsigned int i=2; i<=100; i+=2)
+        numStrainsList.push_back(i);
+    double beta0 = 1.0; //Naive transmission rate.
+    const double sigma = 0.25;
+    const double mu = 1.0/50.0;
+    const double initialInfected = 0.0001;
+    std::vector<double> prevalences = num_strains_sweep(name, numStrainsList, beta0, sigma, mu, initialInfected, false, false);
+
+    std::vector<double> conversion; //Convert numStrainsList from std::vector<unsigned int > into a std::vector<double>
+    for (unsigned int i : numStrainsList) conversion.push_back(i);
+
+    std::vector<std::vector<double>> output = {conversion, prevalences};
+    matrixToFile(output, name+".csv", ", ");
+    */
+
+    ///Run a series of num_strains_sweep for different beta0
+    std::string name = "num_strains_sweep_each_beta0";
+    std::vector<unsigned int> numStrainsList;
+    for (unsigned int i=2; i<=100; i+=2)
+        numStrainsList.push_back(i);
+    std::vector<double> beta0List = {0.5, 1.0, 2.0}; //Naive transmission rates to sweep through.
+    const double sigma = 0.25;
+    const double mu = 1.0/50.0;
+    const double initialInfected = 0.0001;
+    std::vector<std::vector<double>> output = num_strains_sweep_each_beta0(name, numStrainsList, beta0List, sigma, mu, initialInfected, false, false);
 
     matrixToFile(output, name+".csv", ", ");
 

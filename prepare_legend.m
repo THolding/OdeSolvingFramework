@@ -3,5 +3,5 @@ function [legendStrs] = prepare_legend(numericalLabels, optionalLabel)
 	if nargin() == 1
 		optionalLabel = [];
 	end
-	legendStrs = cellstr(num2str(numericalLabels, [optionalLabel '%-d']));
+	legendStrs = cellstr(num2str(numericalLabels, [optionalLabel '%.1f']));
 end

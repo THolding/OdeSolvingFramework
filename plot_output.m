@@ -1,3 +1,5 @@
+%Use to plot output from eir_sweep
+
 %data = csvread("eir_sweep_test.csv");
 %numStrains = csvread("eir_sweep_test_numStrains.csv");
 

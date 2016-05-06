@@ -1,10 +1,8 @@
-function [] = plot_prevalence(datafile, indicesToPlot)
+%Use to plot output from simulation_sets::eir_sweep.
+%function [] = plot_prevalence(datafile, indicesToPlot)
+	datafile = "eir_sweep.csv";
 
 	data = csvread(datafile);
-
-	if nargin < 2
-		indicesToPlot = 1:(size(data, 2)-1);
-	end
 
 	eir = data(:,1);
 	prevalence = data(:,indicesToPlot);
@@ -25,4 +23,4 @@ function [] = plot_prevalence(datafile, indicesToPlot)
 	%set(gcf,'PaperUnits','inches','PaperPosition',[0 0 4 3])
 	%print -dpdf "SIR_prev_fit.pdf" -r100
 
-end
+%end

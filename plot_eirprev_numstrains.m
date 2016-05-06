@@ -1,33 +1,31 @@
-name = 'numstrains_sweep_crossimmunity';
-%recovs = csvread([name, '_recovered.csv']);
+%Use to plot output from simulation_sets::num_strains_sweep_each_beta0.
+
+name = 'num_strains_sweep_each_beta0';
 %function [] = plot_eirprev_numstrains (name)
 
-	numStrainsList = csvread([name, '_numStrainsList.csv']);
+	beta0List = csvread([name, '_beta0List.csv']);
+	numPrevs = length(beta0List);
+
 	data = csvread([name, '.csv'])';
-	eir = data(1,:) * 365;
-	numPrevs = length(numStrainsList);
+	numStrains = data(1,:);
 	prevs = data(2:numPrevs+1, :);
 
-	lineColours = calc_colour_range(1:length(numStrainsList), [.1,.2,.9], [0.9,0.2,0.1]);
+	lineColours = calc_colour_range(1:length(beta0List), [.1,.2,.9], [0.9,0.2,0.1]);
 
-	%Plot each eir sweep
+	%Plot each prevalence vector against numStrains
 	graphics_toolkit('gnuplot')
 	hold off;
 	for i=1:numPrevs
-		plot(eir, prevs(i,:), 'Color', lineColours(i,:), 'LineWidth', 3);
+		plot(numStrains, prevs(i,:), 'Color', lineColours(i,:), 'LineWidth', 3);
 		hold on;
 	end
 
-	legend(prepare_legend(numStrainsList, 'n='), 'Location', 'northwest');
-	xlabel('EIR (annual)');
-	%xlabel('beta');
+	legend(prepare_legend(beta0List, 'beta0 = '), 'Location', 'northwest');
+	xlabel('No. strains');
 	ylabel('Prevalence');
 	%axis([0, eir(length(eir)), 0, ceil(max(prevs)*10)/10]); %Rounds axis scaling to 1/10th.
 
-	%figure
-	%plot(eir, recovs, 'b');
-
 	%printing
 	set(gcf,'PaperUnits','inches','PaperPosition',[0 0 6 4.5])
-	print -dpdf "anon_prevalence_crossimmunity_x12_recovery.pdf" -r100
+	print -dpdf "anon_sir_numstrains_vs_prevalence.pdf" -r100
 %end
