@@ -93,11 +93,11 @@ int main()
     ///Run a series of num_strains_sweep for different beta0
     std::string name = "num_strains_sweep_each_beta0";
     std::vector<unsigned int> numStrainsList;
-    for (unsigned int i=2; i<=100; i+=2)
+    for (unsigned int i=2; i<=80; i+=2)
         numStrainsList.push_back(i);
-    std::vector<double> beta0List = {0.5, 1.0, 2.0}; //Naive transmission rates to sweep through.
-    const double sigma = 0.25;
-    const double mu = 1.0/50.0;
+    std::vector<double> beta0List = {0.25, 0.5, 1.0}; //Naive transmission rates to sweep through.
+    const double sigma = 1.0/60.0;
+    const double mu = 1.0/70.0;
     const double initialInfected = 0.0001;
     std::vector<std::vector<double>> output = num_strains_sweep_each_beta0(name, numStrainsList, beta0List, sigma, mu, initialInfected, false, false);
 

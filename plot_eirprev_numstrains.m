@@ -20,7 +20,7 @@ name = 'num_strains_sweep_each_beta0';
 		hold on;
 	end
 
-	legend(prepare_legend(beta0List, 'beta0 = '), 'Location', 'northwest');
+	legend(prepare_legend(beta0List, 'beta0 = '), 'Location', 'southeast');
 	xlabel('No. strains');
 	ylabel('Prevalence');
 	%axis([0, eir(length(eir)), 0, ceil(max(prevs)*10)/10]); %Rounds axis scaling to 1/10th.
