@@ -38,6 +38,7 @@
 		<Unit filename="src/model_definition.hpp" />
 		<Unit filename="src/model_driver.cpp" />
 		<Unit filename="src/model_driver.hpp" />
+		<Unit filename="src/multistrain_equivalent.hpp" />
 		<Unit filename="src/runge_kutta_ck_solver.cpp" />
 		<Unit filename="src/runge_kutta_ck_solver.hpp" />
 		<Unit filename="src/simulation_sets.cpp" />

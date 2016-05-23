@@ -1,11 +1,14 @@
 #include <iostream>
 #include "model_driver.hpp"
 #include "sir_anon_strains.hpp"
+#include "multistrain_equivalent.hpp"
 #include "simulation_sets.hpp"
 #include "helper_functions.hpp"
 
 int main()
 {
+    ///Run equivalent multistrain model
+    run_example_multistrain_equivalent();
 
     ///Example execution of a single simulation.
     /*const unsigned int numStrains = 2;
@@ -91,7 +94,7 @@ int main()
     */
 
     ///Run a series of num_strains_sweep for different beta0
-    std::string name = "num_strains_sweep_each_beta0";
+    /*std::string name = "num_strains_sweep_each_beta0";
     std::vector<unsigned int> numStrainsList;
     for (unsigned int i=2; i<=80; i+=2)
         numStrainsList.push_back(i);
@@ -102,6 +105,7 @@ int main()
     std::vector<std::vector<double>> output = num_strains_sweep_each_beta0(name, numStrainsList, beta0List, sigma, mu, initialInfected, false, false);
 
     matrixToFile(output, name+".csv", ", ");
+    */
 
     return 0;
 }
